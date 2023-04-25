@@ -17,7 +17,7 @@ public class CreateCubes : MonoBehaviour
     // местоположения респа игроков 
     private Transform _spawnPOne;
     private Transform _spawnPTwo;
-    private GameMode _mode = GameMode.twoPlayers;
+ 
     private GameObject _prefabLevel;
 
     private int _nextLevelPoints = 10;
@@ -29,17 +29,11 @@ public class CreateCubes : MonoBehaviour
     private float _deltaZ = 7;
     private float _deltaXY = 4;
 
-    private void Awake()
-    {
-        //_prefabLevel = Resources.Load("Prefabs/LevelEasy") as GameObject;
-    }
     private void Start()
     {
         _level = 0;
         _levelMax = _levels.Length;
         StartLevel();
-
-
     }
 
     private void FixedUpdate()
@@ -59,7 +53,6 @@ public class CreateCubes : MonoBehaviour
             _level = 0;
         }
         StartLevel();
-
     }
     private void StartLevel()
     {
@@ -109,7 +102,7 @@ public class CreateCubes : MonoBehaviour
             Color _color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f), 0.8f);
             cube.GetComponent<Renderer>().material.color = _color;
             cube.GetComponent<Light>().color = _color;
-            //Cubes.Add(cube);
+            
         }
     }
         

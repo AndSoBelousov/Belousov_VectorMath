@@ -1,22 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI; 
 
-public class SwitchingTheScene : MonoBehaviour
+public class SwitchingTheScene : GameManager
 {
-    private const string _sceneName = "";
-    private int _sceneBuildIndex = 1; //Индекс сцены в настройках для загрузки (0 - меню, 1 игровая сцена)
-
-
-    void Start()
+    private void FixedUpdate()
     {
-        
+        if(_numberOfLives <= 0)
+        {
+            OpenGame();
+        }
     }
-
-    private void NexteScene()
+    public void OpenMenu()
     {
-       
+        SceneManager.LoadScene(0);
     }
-
+    public void OpenGame()
+    {
+        Time.timeScale = 1.0f;
+        SceneManager.LoadScene(1);
+    }
 
 }

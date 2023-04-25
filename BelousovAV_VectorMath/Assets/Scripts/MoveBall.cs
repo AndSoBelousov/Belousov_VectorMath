@@ -2,19 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveBall : MonoBehaviour
+public class MoveBall : GameManager
 {
-
+    
     private float _minVelocity = 10f;
 
     private Vector3 lastFrameVelocity;
     private Rigidbody rb;
     private Vector3 _initialVelocity = new Vector3(0, 0, 10);
 
-    private void Start()
-    {
-        
-    }
     private void OnEnable()
     {
        
@@ -37,13 +33,12 @@ public class MoveBall : MonoBehaviour
             GameManager._countOfPoints++;
             Destroy(collision.gameObject);
 
-
-            // елси уничтожило 10 обЪектов то переход на следующий уровень сложности
         }
         if (layerMask == 7)
         {
+            GameManager._numberOfLives -= 1;
+            
             Destroy(this.gameObject);
-            //StartBall.Che
         }
 
 
@@ -54,7 +49,6 @@ public class MoveBall : MonoBehaviour
         float speed = lastFrameVelocity.magnitude;
         Vector3 direction = Vector3.Reflect(lastFrameVelocity.normalized, collisionNormal);
 
-        //Debug.Log("Out Direction: " + direction);
         rb.velocity = direction * Mathf.Max(speed, _minVelocity);
     }
 }
